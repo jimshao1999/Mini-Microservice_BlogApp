@@ -8,7 +8,7 @@ export default () => {
 
     const fetchPosts = async() => {
         try{
-            const res = await axios.get('http://localhost:4002/posts');
+            const res = await axios.get('http://blogs.com/posts');
             setPosts(res.data);
         }catch{
             console.log('Cannot get QueryService');
