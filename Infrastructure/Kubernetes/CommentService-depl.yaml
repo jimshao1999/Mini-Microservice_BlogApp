@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comment-service-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comment-service
+  template:
+    metadata:
+      labels:
+        app: comment-service
+    spec:
+      containers:
+        - name: comment-service
+          image: jimshao1999/blog_comment-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comment-service-serv
+spec:
+  selector:
+    app: comment-service
+  ports:
+    - name: comment-service
+      protocol: TCP
+      port: 4001
+      targetPort: 4001

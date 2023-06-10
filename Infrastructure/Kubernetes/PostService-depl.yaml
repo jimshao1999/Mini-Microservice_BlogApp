@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-service-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: post-service
+  template:
+    metadata:
+      labels:
+        app: post-service
+    spec:
+      containers:
+        - name: post-service
+          image: jimshao1999/blog_post-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: post-clusterip-serv
+spec:
+  selector:
+    app: post-service
+  ports:
+    - name: post-clusterip-serv
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

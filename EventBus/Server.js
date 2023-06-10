@@ -11,16 +11,16 @@ app.post('/events', (req, res) => {
     const event = req.body;
     events.push(event);
 
-    axios.post('http://localhost:4000/events', event).catch((err) => {
+    axios.post('http://post-clusterip-serv:4000/events', event).catch((err) => {
         console.log(err.message);
     });
-    axios.post('http://localhost:4001/events', event).catch((err) => {
+    axios.post('http://comment-service-serv:4001/events', event).catch((err) => {
         console.log(err.message);
     });
-    axios.post('http://localhost:4002/events', event).catch((err) => {
+    axios.post('http://query-service-serv:4002/events', event).catch((err) => {
         console.log(err.message);
     });
-    axios.post('http://localhost:4003/events', event).catch((err) => {
+    axios.post('http://moderation-service-serv:4003/events', event).catch((err) => {
         console.log(err.message);
     });
 
