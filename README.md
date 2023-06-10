@@ -7,15 +7,15 @@ The blog website demonstrates the microservice concepts as I broke up the posts,
 
 Quick explanation for each service:
 
-QueryService fetches all the posts and comments.
+1. QueryService fetches all the posts and comments.
 
-PostService creates Posts and sends the "PostCreated" json to EventBus for other services to fetch (eg. QueryService and CommentService).
+2. PostService creates Posts and sends the "PostCreated" json to EventBus for other services to fetch (eg. QueryService and CommentService).
 
-CommentService creates Comments and sends the "CommentCreated" json to EventBus for other services to fetch (eg. QueryService and ModerationService).
+3. CommentService creates Comments and sends the "CommentCreated" json to EventBus for other services to fetch (eg. QueryService and ModerationService).
 
-ModerationService fetches comments from EventBus, wait for 5 seconds, and checks if the word contains "duck". If so, the comment is banned, else approved. Then send the Info to EventBus for other services to fetch (eg. QueryService).
+4. ModerationService fetches comments from EventBus, wait for 5 seconds, and checks if the word contains "duck". If so, the comment is banned, else approved. Then send the Info to EventBus for other services to fetch (eg. QueryService).
 
-EventBusServices acts as a simple Pub/Sub strucutre for broadcasting the event changes. There are many intricate MessageQueues such as Kafka, RabbitMQ,... to replace this little thing XD.
+5. EventBusServices acts as a simple Pub/Sub strucutre for broadcasting the event changes. There are many intricate MessageQueues such as Kafka, RabbitMQ,... to replace this little thing XD.
 
 
 The following picture shows the access point of each service and how they communicate with each other.
